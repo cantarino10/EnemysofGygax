@@ -1,1 +1,1 @@
-web: gunicorn rpgsite:app
+web: gunicorn rpgsite.wsgi:application
