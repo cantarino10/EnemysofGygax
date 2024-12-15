@@ -46,7 +46,7 @@
                       </div>  
                      {%endif%}
                   </div>  
-                  <div>
+                  <div style="width: -webkit-fill-available;">
                       <div class="dropdown_headers">
                         <a href="{% url 'char_builder'%}" class="icon navbar-brand"  style="padding: 0;margin: 0;"><h4>Char Builder</h4></a>
                       </div>
@@ -102,7 +102,7 @@
                 <a href="{% url 'char_builder'%}" class="dropdown_search header_cb" style="align-items: center;"><img src="{%static 'css/gearicon.png'%}" alt="Handbook"  class="icon_"><p style="font-size: 1.8rem;font-family: inherit;margin-bottom:0 ;color:white ;">Char Builder</p></a>
               </div>           
              </div>     
-              <div>   
+              <div class="log_div">   
                 {%if not user.is_authenticated %}
                   <div style="display: flex;">
                     <a class="nav-link" href="{%url 'login' %}" style="font-size: 1.8rem;margin-right: 2rem;">Login</a>

@@ -1113,6 +1113,10 @@ div{
     display: none;
   }
 
+  .log_div{
+    display: none;
+  }
+
   .dropdown{
     display: none;
   }
