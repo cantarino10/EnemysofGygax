@@ -62,11 +62,8 @@ MIDDLEWARE = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://www.meusite.com',
-    'https://meusite.com',
-    'https://subdominio.meusite.com',  # Se estiver usando subdomínios
-    'http://localhost:8000',  # Para ambiente de desenvolvimento (localhost)
-    'https://enemysofgygax-production.up.railway.app/'
+   
+    'https://enemysofgygax-production.up.railway.app'
 ]   
 
 ROOT_URLCONF = 'rpgsite.urls'
