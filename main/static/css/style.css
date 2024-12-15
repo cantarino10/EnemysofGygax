@@ -1146,6 +1146,7 @@ div{
   .container{
     max-width: 600px;
     max-height: 2500px;
+    min-width: 500px;
     height: fit-content;
   }
 }
