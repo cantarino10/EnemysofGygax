@@ -1068,7 +1068,9 @@ div{
   max-width: 8rem;
 
 }
-
+.table thead{
+  border: solid 3px black;
+}
 .eh_item{
 
   font-weight: 300;
@@ -1123,5 +1125,28 @@ div{
   .dropdown2{
     display: inline-block;
     width: fit-content;
+  }
+
+  #Builder_Content{
+    transform: scale(0.45);
+    transform-origin: top left;
+    width: min-content;
+  }
+
+  #generate-pdf{
+    transform: scale(2.0);
+    transform-origin: top left;
+    
+  }
+
+  .print_div{
+    margin-bottom: 10px;
+  }
+
+  .container{
+    max-width: 600px;
+    max-height: 2500px;
+    min-width: 500px;
+    height: fit-content;
   }
 }
