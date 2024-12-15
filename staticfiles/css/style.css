@@ -1096,7 +1096,8 @@ div{
     min-width: 100vw;
   }
   .body{
-
+    background-repeat: no-repeat;
+    background-attachment :fixed ;
     width: 360px;
   }
   .sc_main{
