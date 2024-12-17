@@ -293,7 +293,7 @@ class Character:
        if gold > 300 and weapon.name != 'Unarmed Strike' :
          while True:
            magic = magic_possibility(self.level)
-
+            
            if magic == 'MW':
               weapon.magic = 'MW'
               gold = gold-300

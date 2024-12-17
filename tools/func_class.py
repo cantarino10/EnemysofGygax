@@ -24,7 +24,7 @@ class SetWeapons:
    
   def adjust(self):
     if self.magic =='MW':
-      self.bonus +=1 
+      self.bonus +=1
     else :  
      self.bonus += self.enhancement 
 
