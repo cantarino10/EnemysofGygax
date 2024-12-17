@@ -1096,7 +1096,9 @@ div{
     min-width: 100vw;
   }
   .body{
-
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh; 
     width: 360px;
   }
   .sc_main{
@@ -1127,11 +1129,7 @@ div{
     width: fit-content;
   }
 
-  #Builder_Content{
-    transform: scale(0.45);
-    transform-origin: top left;
-    width: min-content;
-  }
+  
 
   #generate-pdf{
     transform: scale(2.0);
@@ -1143,10 +1141,5 @@ div{
     margin-bottom: 10px;
   }
 
-  .container{
-    max-width: 600px;
-    max-height: 2500px;
-    min-width: 500px;
-    height: fit-content;
-  }
+
 }

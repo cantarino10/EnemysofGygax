@@ -8,15 +8,18 @@ from time import time
 # Create your views here.
 atrb = ['STR','DEX','CON','INT','WIS','CHA']
 def roll_dice(request):
-
+  standard_dices = ['d4','d6','d8','d10','d12','d20','d100']
+  
   if request.method == "POST":
+
     a = dict(request.POST)   
+    print(a)
     result,sume,dices = roll_dices(a)
     result = zip(result,sume,dices)   
-    context = {'range' : range(6),'results' : result, 'sum' : sum(sume)}
+    context = {'choices' : zip(request.POST.getlist('number_dices'),request.POST.getlist('Dice'),range(7)),'results' : result, 'sum' : sum(sume)}
     return render(request,'tools/roll_dice.html', context)
 
-  context = {'range' : range(6)}
+  context = {'choices' : zip([0,0,0,0,0,0,0],standard_dices,range(7))}
   return render(request,'tools/roll_dice.html', context)
 
 def stats_builder(request,atributes = False):

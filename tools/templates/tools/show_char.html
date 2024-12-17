@@ -3,9 +3,23 @@
 {%load bootstrap5%}
 {% block content %}
   <style>
-    .container{
-      width: fit-content;
+
+      @media screen and (max-width:768px) {
+      .container{
+        max-width: 600px;
+        max-height: 2500px;
+        min-width: 500px;
+        height: fit-content;
     }
+      #Builder_Content{
+        transform: scale(0.45);
+        transform-origin: top left;
+        width: min-content;
+    }
+      }
+      .container{
+        width: fit-content;
+      }
   </style>
   
   <div class="print_div" style="height: 3rem;width: 50%;display: inline-block;">
