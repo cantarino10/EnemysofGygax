@@ -31,6 +31,7 @@ urlpatterns = [
     path('enhancements/',views.enhancements, name='enhancements'),
     path('enhancement/<enhancement_name>',views.enhancement, name='enhancement'),
     path('define_type/<name>',views.define_type, name='define'),
+    path('googlea135415e434a0e29',views.google_verif, name='google_verif'),
  
 
 

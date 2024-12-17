@@ -9,6 +9,7 @@ urlpatterns = [
     path('char_builder',views.char_builder, name='char_builder'),
     path('encounter_calculate',views.encounter_calculate, name='encounter'),
     path('item_randomize',views.item_randomize,name='item_randomize'),
+    path('item_randomize',views.item_randomize,name='item_randomize'),
 
     
 ]

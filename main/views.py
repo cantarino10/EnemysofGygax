@@ -486,4 +486,5 @@ def define_type(request,name:str):
   return feat(request,value.id) 
 
 
-
+def google_verif(request):
+  return render(request ,"main/googlea135415e434a0e29.html")
