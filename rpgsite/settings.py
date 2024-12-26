@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'tools',
     'crispy_forms',
     "crispy_bootstrap5",
+    'rest_framework',
+    'django_extensions',
     #APP de terceiros
     'bootstrap5',
     'captcha',

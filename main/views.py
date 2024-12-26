@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 from time import sleep
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import Entryhb,EntryClasses,EntryRaces,EntryItems,EntryFeat,EntrySpells,EntryRaces,EntryEnhancement
-
+from .forms import Entryhb,EntryClasses,EntryRaces,EntryItems,EntryFeat,EntrySpells,EntryRaces
 from .models import Handbooks,Classes,Races,Items,Feats, Spells,favorites_spells,favorites_feats,Skills,Magic_Enhancement
 from django.contrib.auth.decorators import login_required      #metodo para restringer os logins
 #decorator são para alterar o comportamento da função sem mudar a função
@@ -14,7 +13,7 @@ from django.core.paginator import Paginator
 
 import pandas as pd
 from django.shortcuts import get_object_or_404
-import re,json
+import re,json,requests
 
 ### 'result' variables are here to store search data even after page refresh
 resulthb = []  
@@ -170,15 +169,14 @@ def items(request):
         except:
            return render(request, "main/items.html")
     else:    
-        try:
-        
+        try:        
          itemsname = request.POST['itemname']
         except:
           return render(request, "main/items.html")  
         if request.POST['itemprice'] == '':
           itemsprice = 9999999
         else:
-          itemsprice = request.POST['itemprice']   
+          itemsprice = request.POST['itemprice']  
         
         resultit = Items.objects.filter(text__contains=itemsname,handbook__contains=request.POST['itemhandbook'],slot__contains=request.POST['itemslot'],price__lte=itemsprice).order_by('slot')
         class_paginator = Paginator(resultit,20)
@@ -241,23 +239,25 @@ def register_feats(request):
 
 
 def feat(request,feat_id):
+
   requisites = []
   isfavorite= 'False'
-  feat = Feats.objects.get(id = feat_id)
+  response = requests.get(f"{request.build_absolute_uri('/')}api/feats/{feat_id}")
+  feat = response.json()  
   try:
-    book = Handbooks.objects.get(text = feat.handbook)
+    book = Handbooks.objects.get(text = feat['handbook'])
   except:
     book = ''  
   try:
-    otherfeats = Feats.objects.filter(name = feat.name)
+    otherfeats = Feats.objects.filter(name = feat['name'])
   except:
     otherfeats = ''  
-  if feat.required != ' ':
-    feat.required = feat.required.split(',') 
-  if feat.requisite != ' ':
-    feat.requisite = feat.requisite.split(',')    
-  feat.requisite = feat.requisite[:-1]
-  for i in feat.requisite:
+  if feat['required'] != ' ':
+    feat['required'] = feat['required'].split(',') 
+  if feat['requisite'] != ' ':
+    feat['requisite'] = feat['requisite'].split(',')    
+  feat['requisite'] = feat['requisite'][:-1]
+  for i in feat['requisite']:
 
       b = i.split(' (')
       b = b[0].strip()
@@ -268,7 +268,7 @@ def feat(request,feat_id):
       sp = favorites_feats.objects.get(user_id=request.user.id)
       if feat_id in sp.feat_id.split(','):
         isfavorite = 'True'
-  requisites = zip(feat.requisite,requisites)    
+  requisites = zip(feat['requisite'],requisites)    
   context = {'isfavorite': isfavorite,'requisites' : requisites,'otherfeats':otherfeats,'feat'  : feat,'book' : book, 'method' : request.method}
   return render(request, 'main/feat.html', context)
 

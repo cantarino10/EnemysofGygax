@@ -51,8 +51,8 @@ class Feats(models.Model)  :
   
   name = models.CharField(max_length=50)
   version = models.CharField(max_length=5)
-  shortdescript = models.CharField(max_length=300)
-  page = models.IntegerField()
+  shortdescript = models.CharField(max_length=300,null=True)
+  page = models.CharField(max_length=5, null=True)
   type = models.CharField(max_length=50)
   handbook = models.CharField(max_length=50)
   requisite = models.TextField(max_length=5000, blank=True)

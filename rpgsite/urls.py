@@ -24,4 +24,5 @@ urlpatterns = [
     path('tools/',include('tools.urls')),
     path('captcha/', include('captcha.urls')),
     
+    
 ]

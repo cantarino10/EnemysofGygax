@@ -1,6 +1,16 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+from main.api import viewset as featviewset
+
+route = routers.DefaultRouter()
+
+route.register(r'feats',featviewset.FeatsViewSet, basename= 'Feat')
+
+
+
 
 urlpatterns = [
 
@@ -17,6 +27,7 @@ urlpatterns = [
     path('register_races',views.register_races,name='register_races'),
     path('register_items',views.register_items,name='register_items'),
     path('feats', views.feats,name='feats'),
+    path('api/', include(route.urls),name = 'apis'),
     path('feat/<feat_id>',views.feat,name='feat'),
     path('callfeat/<feat_name>',views.callfeat,name='call_feat'),
     path('register_feats',views.register_feats,name='register_feats'),
