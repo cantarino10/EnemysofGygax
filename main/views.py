@@ -243,7 +243,9 @@ def feat(request,feat_id):
   requisites = []
   isfavorite= 'False'
   response = requests.get(f"https://enemysofgygax-production.up.railway.app/api/feats/{feat_id}")
+  print(f"https://enemysofgygax-production.up.railway.app/api/feats/{feat_id}",response)
   feat = response.json()  
+
   try:
     book = Handbooks.objects.get(text = feat['handbook'])
   except ObjectDoesNotExist:
