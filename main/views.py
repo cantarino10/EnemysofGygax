@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required      #metodo para rest
 #decorator são para alterar o comportamento da função sem mudar a função
 from django.contrib.auth.decorators import user_passes_test
 from django.core.paginator import Paginator
-from django.core.exceptions import ObjectDoesNotExist
+
 import pandas as pd
 from django.shortcuts import get_object_or_404
 import re,json,requests
@@ -239,30 +239,23 @@ def register_feats(request):
 
 
 def feat(request,feat_id):
-
   requisites = []
   isfavorite= 'False'
-  response = requests.get(f"https://enemysofgygax-production.up.railway.app/api/feats/{feat_id}")
-  if response.status_code == 200:
-    feat = response.json()
-  else:
-    feat = {}
-  
-
+  feat = Feats.objects.get(id = feat_id)
   try:
-    book = Handbooks.objects.get(text = feat['handbook'])
-  except ObjectDoesNotExist:
+    book = Handbooks.objects.get(text = feat.handbook)
+  except:
     book = ''  
   try:
-    otherfeats = Feats.objects.filter(name = feat['name'])
+    otherfeats = Feats.objects.filter(name = feat.name)
   except:
     otherfeats = ''  
-  if feat['required'] != ' ':
-    feat['required'] = feat['required'].split(',') 
-  if feat['requisite'] != ' ':
-    feat['requisite'] = feat['requisite'].split(',')    
-  feat['requisite'] = feat['requisite'][:-1]
-  for i in feat['requisite']:
+  if feat.required != ' ':
+    feat.required = feat.required.split(',') 
+  if feat.requisite != ' ':
+    feat.requisite = feat.requisite.split(',')    
+  feat.requisite = feat.requisite[:-1]
+  for i in feat.requisite:
 
       b = i.split(' (')
       b = b[0].strip()
@@ -273,7 +266,7 @@ def feat(request,feat_id):
       sp = favorites_feats.objects.get(user_id=request.user.id)
       if feat_id in sp.feat_id.split(','):
         isfavorite = 'True'
-  requisites = zip(feat['requisite'],requisites)    
+  requisites = zip(feat.requisite,requisites)    
   context = {'isfavorite': isfavorite,'requisites' : requisites,'otherfeats':otherfeats,'feat'  : feat,'book' : book, 'method' : request.method}
   return render(request, 'main/feat.html', context)
 
