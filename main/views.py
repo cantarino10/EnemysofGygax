@@ -247,7 +247,7 @@ def feat(request,feat_id):
     feat = response.json()
   else:
     feat = {}
- 
+  
 
   try:
     book = Handbooks.objects.get(text = feat['handbook'])
