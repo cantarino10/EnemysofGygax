@@ -241,6 +241,7 @@ def register_feats(request):
 def feat(request,feat_id):
   requisites = []
   isfavorite= 'False'
+  response = requests.get(f"https://enemysofgygax-production.up.railway.app/api/feats/{feat_id}")
   feat = Feats.objects.get(id = feat_id)
   try:
     book = Handbooks.objects.get(text = feat.handbook)

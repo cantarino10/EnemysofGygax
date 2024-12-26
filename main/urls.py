@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from rest_framework import routers
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from main.api import viewset as featviewset
 
 route = routers.DefaultRouter()
@@ -43,6 +43,8 @@ urlpatterns = [
     path('enhancement/<enhancement_name>',views.enhancement, name='enhancement'),
     path('define_type/<name>',views.define_type, name='define'),
     path('googlea135415e434a0e29.html',views.google_verif, name='google_verif'),
+    path('token/',TokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
  
 
 
