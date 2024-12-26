@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required      #metodo para rest
 #decorator são para alterar o comportamento da função sem mudar a função
 from django.contrib.auth.decorators import user_passes_test
 from django.core.paginator import Paginator
-
+from django.core.exceptions import ObjectDoesNotExist
 import pandas as pd
 from django.shortcuts import get_object_or_404
 import re,json,requests
@@ -242,11 +242,11 @@ def feat(request,feat_id):
 
   requisites = []
   isfavorite= 'False'
-  response = requests.get(f"{request.build_absolute_uri('/')}api/feats/{feat_id}")
+  response = requests.get(f"https://enemysofgygax-production.up.railway.app/api/feats/{feat_id}")
   feat = response.json()  
   try:
     book = Handbooks.objects.get(text = feat['handbook'])
-  except:
+  except ObjectDoesNotExist:
     book = ''  
   try:
     otherfeats = Feats.objects.filter(name = feat['name'])
