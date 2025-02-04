@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.utils.decorators import method_decorator
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 from django.contrib.auth.models import User
 from time import sleep
 from django.http import HttpResponseRedirect
@@ -57,8 +59,11 @@ def register_books(request):
 
 
 def handbook(request, book: str):
-
-  hbook = Handbooks.objects.get(text = book) 
+  try :
+    hbook = Handbooks.objects.get(text = book) 
+  except ObjectDoesNotExist:  
+    messages.error(request,"Book Does not exist on the Data Base",extra_tags='safe')
+    return redirect('index')
   return HttpResponseRedirect(hbook.link)
 
 
