@@ -56,7 +56,8 @@ def register_books(request):
   return render(request, 'main/register_books.html', context)
 
 
-def handbook(book: str):
+def handbook(request, book: str):
+
   hbook = Handbooks.objects.get(text = book) 
   return HttpResponseRedirect(hbook.link)
 
