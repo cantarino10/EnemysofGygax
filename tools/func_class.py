@@ -128,7 +128,8 @@ class SetArmor:
     while property > 0 :
         rand = randint(1,property)
         property -= rand
-        self.properties.append(f'{choice(Magic_Enhancement.objects.filter(price__contains = f'+{rand}',slot__contains = 'Armor')).name} (+{rand  })')
+        self.properties.append(f'{choice(Magic_Enhancement.objects.filter(price__contains=f"+{rand}", slot__contains="Armor")).name} (+{rand})')
+
     self.magic = f'{magic} (+{self.enhancement}/+{self.property})' 
            
   
