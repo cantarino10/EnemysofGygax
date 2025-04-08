@@ -1,1 +1,1 @@
-web: gunicorn rpgsite.wsgi:application
+web: gunicorn rpgsite.wsgi:application --bind 0.0.0.0:$PORT
