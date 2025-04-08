@@ -94,7 +94,7 @@ def item_randomize(request):
       except:
         item = None  
         book = None
-        message = f'Could not find an item between {request.POST.get('min_value')}gp and {request.POST.get('max_value')}gp '
+        message = f"Could not find an item between {request.POST.get('min_value')}gp and {request.POST.get('max_value')}gp "
       else:  
         book = Handbooks.objects.filter(text = item.handbook)
     context = {'item' : item,'book' : book ,'message':message}    
