@@ -24,7 +24,22 @@
   {%bootstrap_css%}
   {%bootstrap_javascript%}
  </head>
- 
+ <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      color: #0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 4em;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
  <body class="body">
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong navbar-static-top" style="max-width: 100vw;position:sticky; top:0;background-color: rgba(0,0,0,.2);min-width: 100vw; ">
@@ -144,12 +159,45 @@
     <div class="page-header">
         {%block header%}{%endblock header%}
     </div>
-      
+    <div id="contador">00:00:00</div>
+ 
     <div class="main_content" id="Builder_Content">
         {%block content%}{% endblock content%} 
     </div>    
   </div>
-   
+
+  <script>
+  function getNextSaturday17() {
+    const now = new Date();
+    const utcNow = now.getTime() + now.getTimezoneOffset() * 60000;
+    const brNow = new Date(utcNow - 3 * 60 * 60 * 1000); // UTC-3
+
+    const day = brNow.getDay();
+    const daysUntilSaturday = (6 - day + (brNow.getHours() >= 17 ? 7 : 0)) % 7;
+    
+    const target = new Date(brNow);
+    target.setDate(brNow.getDate() + daysUntilSaturday);
+    target.setHours(17, 0, 0, 0);
+
+    return new Date(target.getTime() + 3 * 60 * 60 * 1000); // volta pra UTC
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    const target = getNextSaturday17();
+    const diff = Math.max(0, target - now);
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const s = String(totalSeconds % 60).padStart(2, '0');
+
+    document.getElementById('contador').textContent = `${h}:${m}:${s}`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
  </body>
  </html>
   
