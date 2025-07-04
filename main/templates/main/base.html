@@ -145,6 +145,7 @@
         </nav>  
     </div>   
   <ul>
+    <div id="contador">00:00:00</div>
    {% for message in messages %}
       <li class="{{ message.tags }}">
           {% if 'safe' in message.tags %}
@@ -159,7 +160,7 @@
     <div class="page-header">
         {%block header%}{%endblock header%}
     </div>
-    <div id="contador">00:00:00</div>
+   
  
     <div class="main_content" id="Builder_Content">
         {%block content%}{% endblock content%} 
