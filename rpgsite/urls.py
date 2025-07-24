@@ -14,7 +14,7 @@ from main.sitemaps import (
 sitemaps = {
     'static': StaticViewSitemap,
     'classes': ClasseSitemap,
-    'spells': SpellSitemap,
+    'spells': SpellsSitemap,
     'feats': FeatSitemap,
     'enhancements': EnhancementSitemap,
     'items': ItemSitemap,
