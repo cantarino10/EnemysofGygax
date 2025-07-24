@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://www.enemysofgygax.com/sitemap.xml
