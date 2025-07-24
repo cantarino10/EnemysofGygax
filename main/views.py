@@ -20,6 +20,15 @@ import re,json,requests
 ### 'result' variables are here to store search data even after page refresh
 resulthb = []  
 
+from django.http import HttpResponse
+
+def ads_txt(request):
+    return HttpResponse(
+        "google.com, pub-5025549652753872, DIRECT, f08c47fec0942fa0",
+        content_type="text/plain"
+    )
+
+
 def robots_txt(request):
     content = "User-agent: *\nDisallow:"
     return HttpResponse(content, content_type="text/plain")
