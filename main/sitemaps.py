@@ -26,7 +26,7 @@ class ClassesSitemap(Sitemap):
         return Classes.objects.all()
 
     def location(self, obj):
-        return reverse('classe', args=[quote(obj.text)])
+        return reverse('classe', args=[quote(obj.text, safe='')])
 
 class RaceSitemap(Sitemap):
     priority = 0.6
@@ -36,7 +36,7 @@ class RaceSitemap(Sitemap):
         return Race.objects.all()
 
     def location(self, obj):
-        return reverse('race', args=[quote(obj.Race)])
+        return reverse('race', args=[quote(obj.Race, safe='')])
 
 class ItemsSitemap(Sitemap):
     priority = 0.6
@@ -76,7 +76,7 @@ class EnhancementsSitemap(Sitemap):
         return Magic_Enhancement.objects.all()
 
     def location(self, obj):
-        return reverse('enhancement', args=[quote(obj.name)])
+        return reverse('enhancement', args=[quote(obj.name, safe='')])
 
 class HandbooksSitemap(Sitemap):
     priority = 0.6
@@ -86,4 +86,4 @@ class HandbooksSitemap(Sitemap):
         return Handbooks.objects.all()
 
     def location(self, obj):
-        return reverse('handbook', args=[quote(obj.text)])
+        return reverse('handbook', args=[quote(obj.text, safe='')])
