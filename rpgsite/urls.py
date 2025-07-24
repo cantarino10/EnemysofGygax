@@ -2,26 +2,25 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from main.sitemaps import (
     StaticViewSitemap,
-    ClasseSitemap,
-    SpellsSitemap,
-    FeatSitemap,
-    EnhancementSitemap,
-    ItemSitemap,
+    ClassesSitemap,
     RaceSitemap,
-    HandbookSitemap,
+    ItemsSitemap,
+    FeatsSitemap,
+    SpellsSitemap,
+    EnhancementsSitemap,
+    HandbooksSitemap,
 )
 
 sitemaps = {
     'static': StaticViewSitemap,
-    'classes': ClasseSitemap,
-    'spells': SpellsSitemap,
-    'feats': FeatSitemap,
-    'enhancements': EnhancementSitemap,
-    'items': ItemSitemap,
+    'classes': ClassesSitemap,
     'races': RaceSitemap,
-    'handbooks': HandbookSitemap,
+    'items': ItemsSitemap,
+    'feats': FeatsSitemap,
+    'spells': SpellsSitemap,
+    'enhancements': EnhancementsSitemap,
+    'handbooks': HandbooksSitemap,
 }
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
