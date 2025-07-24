@@ -1,7 +1,7 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from .models import (
-    Classe,
+    Classes,           # plural: é o model correto para classes
     Race,
     Items,
     Feats,
@@ -36,15 +36,15 @@ class StaticViewSitemap(Sitemap):
         return reverse(item)
 
 
-class ClasseSitemap(Sitemap):
+class ClassesSitemap(Sitemap):    # plural, corresponde ao model Classes
     priority = 0.6
     changefreq = 'monthly'
 
     def items(self):
-        return Classe.objects.all()
+        return Classes.objects.all()
 
     def location(self, obj):
-        return reverse('classe', args=[obj.Class])  # ajuste se usar slug ou id, aqui usei o campo Class
+        return reverse('classe', args=[obj.text])  # ajuste para o campo correto
 
 
 class RaceSitemap(Sitemap):
@@ -55,7 +55,7 @@ class RaceSitemap(Sitemap):
         return Race.objects.all()
 
     def location(self, obj):
-        return reverse('races')  # Se você não tem detalhe de raça individual, apenas a lista
+        return reverse('race', args=[obj.Race])  # se tiver página detalhada
 
 
 class ItemsSitemap(Sitemap):
@@ -66,7 +66,7 @@ class ItemsSitemap(Sitemap):
         return Items.objects.all()
 
     def location(self, obj):
-        return reverse('items')  # Se tiver página detalhada, ajuste para args=[obj.id] ou algo assim
+        return reverse('item', args=[obj.id])  # se tiver página detalhada
 
 
 class FeatsSitemap(Sitemap):
@@ -77,7 +77,7 @@ class FeatsSitemap(Sitemap):
         return Feats.objects.all()
 
     def location(self, obj):
-        return reverse('feat', args=[obj.id])  # Ajuste se o nome da URL e parâmetro for diferente
+        return reverse('feat', args=[obj.id])  # ajuste se necessário
 
 
 class SpellsSitemap(Sitemap):
@@ -88,7 +88,7 @@ class SpellsSitemap(Sitemap):
         return Spells.objects.all()
 
     def location(self, obj):
-        return reverse('spell', args=[obj.id])  # Ajuste se necessário
+        return reverse('spell', args=[obj.id])
 
 
 class EnhancementsSitemap(Sitemap):
@@ -99,7 +99,7 @@ class EnhancementsSitemap(Sitemap):
         return Magic_Enhancement.objects.all()
 
     def location(self, obj):
-        return reverse('enhancement', args=[obj.name])  # Ajuste para slug/id se usar
+        return reverse('enhancement', args=[obj.name])  # ou outro campo identificador
 
 
 class HandbooksSitemap(Sitemap):
@@ -110,5 +110,4 @@ class HandbooksSitemap(Sitemap):
         return Handbooks.objects.all()
 
     def location(self, obj):
-        return reverse('handbook', args=[obj.text])  # Ajuste para campo correto, aqui usei text
-
+        return reverse('handbook', args=[obj.text])  # ou outro campo identificador
