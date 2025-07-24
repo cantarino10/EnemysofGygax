@@ -46,6 +46,7 @@ urlpatterns = [
     path('token/',TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path("ads.txt", ads_txt, name="ads_txt"),
 
  
 
