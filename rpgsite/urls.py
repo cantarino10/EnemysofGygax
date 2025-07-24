@@ -1,7 +1,7 @@
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 from django.contrib import admin
-
+a = 2
 from main.sitemaps import (
     StaticViewSitemap,
     ClassesSitemap,
