@@ -4,6 +4,8 @@ from . import views
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from main.api import viewset as featviewset
+from main.views import ads_txt
+
 
 route = routers.DefaultRouter()
 
