@@ -1,6 +1,14 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from main.models import Classe, Spell, Feat, Enhancement, Item, Race, Handbook  # Ajuste os nomes conforme seus models
+from .models import (
+    Classe,
+    Race,
+    Items,
+    Feats,
+    Spells,
+    Magic_Enhancement,
+    Handbooks,
+)
 
 class StaticViewSitemap(Sitemap):
     priority = 0.5
@@ -36,51 +44,7 @@ class ClasseSitemap(Sitemap):
         return Classe.objects.all()
 
     def location(self, obj):
-        return reverse('classe', args=[obj.slug])  # ou obj.id se for id, ajuste conforme o campo correto
-
-
-class SpellSitemap(Sitemap):
-    priority = 0.6
-    changefreq = 'monthly'
-
-    def items(self):
-        return Spell.objects.all()
-
-    def location(self, obj):
-        return reverse('spell', args=[obj.id])  # ajuste conforme seu campo
-
-
-class FeatSitemap(Sitemap):
-    priority = 0.6
-    changefreq = 'monthly'
-
-    def items(self):
-        return Feat.objects.all()
-
-    def location(self, obj):
-        return reverse('feat', args=[obj.id])
-
-
-class EnhancementSitemap(Sitemap):
-    priority = 0.6
-    changefreq = 'monthly'
-
-    def items(self):
-        return Enhancement.objects.all()
-
-    def location(self, obj):
-        return reverse('enhancement', args=[obj.name])  # ou slug/id, ajuste conforme
-
-
-class ItemSitemap(Sitemap):
-    priority = 0.6
-    changefreq = 'monthly'
-
-    def items(self):
-        return Item.objects.all()
-
-    def location(self, obj):
-        return reverse('items')  # Se tiver uma URL específica, use ela, senão ajuste aqui
+        return reverse('classe', args=[obj.Class])  # ajuste se usar slug ou id, aqui usei o campo Class
 
 
 class RaceSitemap(Sitemap):
@@ -91,15 +55,60 @@ class RaceSitemap(Sitemap):
         return Race.objects.all()
 
     def location(self, obj):
-        return reverse('races')  # Se tiver detalhe individual, ajuste aqui
+        return reverse('races')  # Se você não tem detalhe de raça individual, apenas a lista
 
 
-class HandbookSitemap(Sitemap):
+class ItemsSitemap(Sitemap):
     priority = 0.6
     changefreq = 'monthly'
 
     def items(self):
-        return Handbook.objects.all()
+        return Items.objects.all()
 
     def location(self, obj):
-        return reverse('handbook', args=[obj.slug])  # Ajuste para o campo correto
+        return reverse('items')  # Se tiver página detalhada, ajuste para args=[obj.id] ou algo assim
+
+
+class FeatsSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'monthly'
+
+    def items(self):
+        return Feats.objects.all()
+
+    def location(self, obj):
+        return reverse('feat', args=[obj.id])  # Ajuste se o nome da URL e parâmetro for diferente
+
+
+class SpellsSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'monthly'
+
+    def items(self):
+        return Spells.objects.all()
+
+    def location(self, obj):
+        return reverse('spell', args=[obj.id])  # Ajuste se necessário
+
+
+class EnhancementsSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'monthly'
+
+    def items(self):
+        return Magic_Enhancement.objects.all()
+
+    def location(self, obj):
+        return reverse('enhancement', args=[obj.name])  # Ajuste para slug/id se usar
+
+
+class HandbooksSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'monthly'
+
+    def items(self):
+        return Handbooks.objects.all()
+
+    def location(self, obj):
+        return reverse('handbook', args=[obj.text])  # Ajuste para campo correto, aqui usei text
+
