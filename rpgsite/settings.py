@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'rest_framework',
     'django_extensions',
+    'django.contrib.sitemaps',
     #APP de terceiros
     'bootstrap5',
     'captcha',
