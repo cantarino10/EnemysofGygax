@@ -3,7 +3,7 @@ from django.urls import path, include
 from main.sitemaps import (
     StaticViewSitemap,
     ClasseSitemap,
-    SpellSitemap,
+    SpellsSitemap,
     FeatSitemap,
     EnhancementSitemap,
     ItemSitemap,
