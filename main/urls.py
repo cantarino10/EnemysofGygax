@@ -45,6 +45,7 @@ urlpatterns = [
     path('googlea135415e434a0e29.html',views.google_verif, name='google_verif'),
     path('token/',TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
  
 
 
