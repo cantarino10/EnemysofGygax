@@ -19,36 +19,6 @@ import re,json,requests
 
 ### 'result' variables are here to store search data even after page refresh
 resulthb = []  
-from datetime import datetime
-
-def sitemap(request):
-    urls = [
-        "https://www.enemysofgygax.com/",
-        "https://www.enemysofgygax.com/handbooks",
-        "https://www.enemysofgygax.com/classes",
-        "https://www.enemysofgygax.com/races",
-        "https://www.enemysofgygax.com/spells",
-        "https://www.enemysofgygax.com/items",
-        "https://www.enemysofgygax.com/enhancements/",
-        "https://www.enemysofgygax.com/tools/encounter_calculate",
-        "https://www.enemysofgygax.com/tools/stats_builder",
-        "https://www.enemysofgygax.com/tools/roll_dice",
-    ]
-
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-
-    for url in urls:
-        xml += "  <url>\n"
-        xml += f"    <loc>{url}</loc>\n"
-        xml += f"    <lastmod>{datetime.now().date().isoformat()}</lastmod>\n"
-        xml += "    <changefreq>weekly</changefreq>\n"
-        xml += "    <priority>0.8</priority>\n"
-        xml += "  </url>\n"
-
-    xml += "</urlset>\n"
-
-    return HttpResponse(xml, content_type="application/xml")
 
 def robots_txt(request):
     content = "User-agent: *\nDisallow:"
