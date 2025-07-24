@@ -1,14 +1,8 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from .models import (
-    Classes,           # plural: é o model correto para classes
-    Race,
-    Items,
-    Feats,
-    Spells,
-    Magic_Enhancement,
-    Handbooks,
-)
+from urllib.parse import quote
+
+from .models import Classes, Race, Items, Feats, Spells, Magic_Enhancement, Handbooks
 
 class StaticViewSitemap(Sitemap):
     priority = 0.5
@@ -16,27 +10,15 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         return [
-            'index',
-            'handbooks',
-            'races',
-            'classes',
-            'items',
-            'feats',
-            'spells',
-            'enhancements',
-            'roll_dice',
-            'stats_builder',
-            'encounter',
-            'login',
-            'register',
-            'password_reset',
+            'index', 'handbooks', 'races', 'classes', 'items', 'feats', 'spells',
+            'enhancements', 'roll_dice', 'stats_builder', 'encounter',
+            'login', 'register', 'password_reset',
         ]
 
     def location(self, item):
         return reverse(item)
 
-
-class ClassesSitemap(Sitemap):    # plural, corresponde ao model Classes
+class ClassesSitemap(Sitemap):
     priority = 0.6
     changefreq = 'monthly'
 
@@ -44,8 +26,7 @@ class ClassesSitemap(Sitemap):    # plural, corresponde ao model Classes
         return Classes.objects.all()
 
     def location(self, obj):
-        return reverse('classe', args=[obj.text])  # ajuste para o campo correto
-
+        return reverse('classe', args=[quote(obj.text)])
 
 class RaceSitemap(Sitemap):
     priority = 0.6
@@ -55,8 +36,7 @@ class RaceSitemap(Sitemap):
         return Race.objects.all()
 
     def location(self, obj):
-        return reverse('race', args=[obj.Race])  # se tiver página detalhada
-
+        return reverse('race', args=[quote(obj.Race)])
 
 class ItemsSitemap(Sitemap):
     priority = 0.6
@@ -66,8 +46,7 @@ class ItemsSitemap(Sitemap):
         return Items.objects.all()
 
     def location(self, obj):
-        return reverse('item', args=[obj.id])  # se tiver página detalhada
-
+        return reverse('item', args=[obj.id])
 
 class FeatsSitemap(Sitemap):
     priority = 0.6
@@ -77,8 +56,7 @@ class FeatsSitemap(Sitemap):
         return Feats.objects.all()
 
     def location(self, obj):
-        return reverse('feat', args=[obj.id])  # ajuste se necessário
-
+        return reverse('feat', args=[obj.id])
 
 class SpellsSitemap(Sitemap):
     priority = 0.6
@@ -90,7 +68,6 @@ class SpellsSitemap(Sitemap):
     def location(self, obj):
         return reverse('spell', args=[obj.id])
 
-
 class EnhancementsSitemap(Sitemap):
     priority = 0.6
     changefreq = 'monthly'
@@ -99,8 +76,7 @@ class EnhancementsSitemap(Sitemap):
         return Magic_Enhancement.objects.all()
 
     def location(self, obj):
-        return reverse('enhancement', args=[obj.name])  # ou outro campo identificador
-
+        return reverse('enhancement', args=[quote(obj.name)])
 
 class HandbooksSitemap(Sitemap):
     priority = 0.6
@@ -110,4 +86,4 @@ class HandbooksSitemap(Sitemap):
         return Handbooks.objects.all()
 
     def location(self, obj):
-        return reverse('handbook', args=[obj.text])  # ou outro campo identificador
+        return reverse('handbook', args=[quote(obj.text)])
