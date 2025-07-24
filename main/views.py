@@ -20,6 +20,10 @@ import re,json,requests
 ### 'result' variables are here to store search data even after page refresh
 resulthb = []  
 
+def robots_txt(request):
+    content = "User-agent: *\nDisallow:"
+    return HttpResponse(content, content_type="text/plain")
+ 
 def index(request): #Function to the main site
  return render(request, 'main/index.html')
 
