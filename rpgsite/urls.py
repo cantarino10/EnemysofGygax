@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('users/', include('users.urls')),
     path('tools/',include('tools.urls')),
     path('captcha/', include('captcha.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     
     
 ]
